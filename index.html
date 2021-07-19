@@ -1,157 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width , initial-scale = 1.0">
-    <link rel= stylesheet href= 'style.css'>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
 
-    
-    <title> Inveedo </title>
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="major_project">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <title>major_project</title>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    
-    <header >
-    <div class="container">
-        <nav>
-            <a href=index.html><img src='Assets/1.png' alt='Logo' class="logo"/></a>
-            <ul >
-                <li><a href='#'>Products</a></li>
-                <li><a href='#'>About Us</a></li>
-                <li><a href='#'>Contact</a></li>
-                <li><a href='#'>Portfolio</a></li>
-            </ul>
-            <img src="Assets/menu-icon.png" class="menu"/>
-        </nav>
-        
-        <h1 class="h r">Digital <br><span class="outline h text">Solutions</span></h1>
-        <h3>Delivering Infosolutions. UI/UX. Web & App Development. </h3>
-    
-    </header>
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    var serviceWorkerVersion = '57513670';
+    var scriptLoaded = false;
+    function loadMainDartJs() {
+      if (scriptLoaded) {
+        return;
+      }
+      scriptLoaded = true;
+      var scriptTag = document.createElement('script');
+      scriptTag.src = 'main.dart.js';
+      scriptTag.type = 'application/javascript';
+      document.body.append(scriptTag);
+    }
 
-    <section class='bg About'>
-        <div class="container">
-        <div class="grid-container">
-        <div class="item1"><h1 class="h">About</h1></div>
-        <div class="item2">Delivering digital solutions to Amazing Startups and Big Giants with 100% success rate!</div>
-        <div class="outline h to "> Us</div>
-        <div class='item4'><b> READ MORE</b> <img src= 'Assets/Ellipse 2.png' class="circle">
-        
-        </div>
-    </section>
+    if ('serviceWorker' in navigator) {
+      // Service workers are supported. Use them.
+      window.addEventListener('load', function () {
+        // Wait for registration to finish before dropping the <script> tag.
+        // Otherwise, the browser will load the script multiple times,
+        // potentially different versions.
+        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
+        navigator.serviceWorker.register(serviceWorkerUrl)
+          .then((reg) => {
+            function waitForActivation(serviceWorker) {
+              serviceWorker.addEventListener('statechange', () => {
+                if (serviceWorker.state == 'activated') {
+                  console.log('Installed new service worker.');
+                  loadMainDartJs();
+                }
+              });
+            }
+            if (!reg.active && (reg.installing || reg.waiting)) {
+              // No active web worker and we have installed or are installing
+              // one for the first time. Simply wait for it to activate.
+              waitForActivation(reg.installing ?? reg.waiting);
+            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
+              // When the app updates the serviceWorkerVersion changes, so we
+              // need to ask the service worker to update.
+              console.log('New service worker available.');
+              reg.update();
+              waitForActivation(reg.installing);
+            } else {
+              // Existing service worker is still good.
+              console.log('Loading app from service worker.');
+              loadMainDartJs();
+            }
+          });
 
-
-
-    <section >
-        <div class="container">
-        <div class=" service">
-            <div class="left">
-                <img src='Assets/IMG_5334.png' class='service-img1'>
-                <img src='Assets/NoPath - Copy (5).png' class="service-img2">
-                <img src='Assets/Screenshot (23).png' class="service-img3">
-                <!--
-                <div class='Digital bg-pink bg-img'>
-                    <h4>Digital Marketing Solutions</h4>
-                    <p>Google SEO/ SEM; Lead Generation; Social Media Management, Website & App Development</p>
-                    <h6><b>READ MORE</b></h6>
-                </div>
-            -->
-            </div>
-            <div class='right '>
-                <h1 class="h">Our</h1>
-                <h1 class="h black-outline">Services</h1>
-                <p id='see-all'><b> SEE ALL</b></p>
-                <img src='Assets/Ellipse 2.png' class="circle">
-            </div>
-    </div>
-    </section>
-
-
-    <section class="bg-blue ">
-        <div class="container">
-        <div class='portfolio grid'>
-            <div>
-            <h1 class="h">Our</h1>
-            <h1 class="h outline ">Portfolio</h1>
-            <p>SEE ALL</p>
-            <img src='Assets/Ellipse 2.png' class="circle">
-            </div>
-            <div><img src='Assets/Mask Group 4.png' class="portfolio-img"></div>
-        </div>
-        <div class="grid trans">
-            <div class='arrow'><span class='fa fa-chevron-circle-left' ></span></div>
-            <div><img src= 'Assets/05.png' style='width:100%'></div>
-            <div><img src= 'Assets/02.png' style='width:100%'></div>
-            <!--<div class=' bg-light'>
-                <h4>MVC Project Scope</h4>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</p>
-                <p>READ MORE</p>
-            </div>-->
-            <div><img src='Assets/04.png' style='width:100%'></div>
-            <div><img src='Assets/03.png' style='width:100%'></div>
-        </div>
-        </div>
-    </section>
-
-    <section >
-        <div class="container">
-            <div class=' contact'>
-            <div class="column1">
-                <ul>
-                    <li> <span class="fa fa-phone" style="font-size: 24px">  </span>   (407) - 826 - 237</li>
-                    <li><span class="fa fa-envelope-open"> </span>   support@mhub.com</li>
-                    <li> <span  class='fa fa-map-marker' style="font-size: 20px"> </span>  Latifa Towers 34th Floor, Office 3401 Sheikh Zayed Road, Dubai</li>
-                </ul>
-            </div>
-            <img src='Assets/Screenshot_2021-02-27_110342-removebg-preview.png' class="contact-image">
-            <div class='column2'>
-                <h1 class="h">Contact</h1>
-                <h1 class=' h pink-outline'>Us</h1>
-            </div>  
-        </div> 
-        </div> 
-    </section>
-
-    <footer>
-        <div class="container">
-        <div class='footer-grid'>
-            <div >
-                <a href=index.html><img src='Assets/1.png' alt='Logo' class="footer-logo"/></a>
-                <p style="padding-right:70px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore</p>
-                <span><a href="#" class="fa fa-facebook" ></a></span>
-                <span><a href="#" class="fa fa-linkedin" style="padding:10px"></a></span>
-                <span><a href="#" class="fa fa-instagram" style="padding:10px;"></a></span>
-                <span><a href="#" class="fa fa-twitter" style="padding:10px;" ></a></span>
-            </div>
-            <div>
-                <h4>Navigation</h4>
-                
-                    <li><a href='#'>Home</a></li>
-                    <li><a href='#'>Products</a></li>
-                    <li><a href='#'>About Us</a></li>
-                    <li><a href='#'>Contact</a></li>
-                    <li><a href='#'>Portfolio</a></li>
-                
-            </div>
-        
-        
-        <div class="item3">
-            <img src='Assets/footer.png' class="footer-img">
-        </div>
-        <div>Copyright <span>&#169;</span> 2020 MHub Inc.</div>
-        <div class="item5">
-           
-            
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms and Condition</a></li>
-           
-        </div>
-    
-    </div>
-    </footer>
-    <script src="script.js"></script>
-
+        // If service worker doesn't succeed in a reasonable amount of time,
+        // fallback to plaint <script> tag.
+        setTimeout(() => {
+          if (!scriptLoaded) {
+            console.warn(
+              'Failed to load app from service worker. Falling back to plain <script> tag.',
+            );
+            loadMainDartJs();
+          }
+        }, 4000);
+      });
+    } else {
+      // Service workers not supported. Just drop the <script> tag.
+      loadMainDartJs();
+    }
+  </script>
 </body>
 </html>

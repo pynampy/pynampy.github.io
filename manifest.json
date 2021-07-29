@@ -1,6 +1,6 @@
 {
-    "name": "major_project",
-    "short_name": "major_project",
+    "name": "saloon_web",
+    "short_name": "saloon_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
